@@ -32,9 +32,14 @@ public class Main {
         System.out.println( olli );
 
  */
+        ArrayList<Integer> grades = new ArrayList<>();
+        grades.add(85);
+        grades.add(90);
+        grades.add(88);
+
         List<Person> people = new ArrayList<Person>();
-        people.add( new Teacher("Pekka Mikkola", "Korsontie Street 1 03100 Vantaa", 1200) );
-        people.add( new Student("Olli", "Ida Albergintie Street 1 00400 Helsinki") );
+        people.add(new Teacher("Pekka Mikkola", "Korsontie Street 1 03100 Vantaa", 40, "Finland", 1200));
+        people.add(new Student("Olli", "Ida Albergintie Street 1 00400 Helsinki", 22, "Finland", 12345, grades));
         printDepartment(people);
     }
 
@@ -44,5 +49,4 @@ public class Main {
         }
     }
 
-    Student olli = new Student("Olli", "Ida Albergintie 1 Street 00400 Helsinki");
 }

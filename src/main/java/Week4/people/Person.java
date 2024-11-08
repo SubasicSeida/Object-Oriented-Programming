@@ -44,10 +44,15 @@ public class Person {
         this.address = address;
     }
 
+    @Override
     public String toString(){
-        return this.name + "\n\t" + this.address;
+        return "Name: " + this.name +
+                "\n\tAddress: " + this.address +
+                "\n\tAge: " + this.age +
+                "\n\tCountry: " + this.country;
     }
 }
+
 
 
 
