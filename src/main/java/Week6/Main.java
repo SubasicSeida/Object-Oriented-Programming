@@ -2,6 +2,7 @@ package Week6;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
@@ -47,5 +48,10 @@ public class Main {
             System.out.println(book);
         }
 
+        HashMap<String, String> names = new HashMap<>();
+        names.put("matti", "mage");
+        names.put("mikael", "mixu");
+        names.put("arto", "arppa");
+        System.out.println(names.get("mikael"));
     }
 }
