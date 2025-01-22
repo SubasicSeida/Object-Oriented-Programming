@@ -107,7 +107,7 @@ class Library {
 }
 
 class DbConnect2 {
-    private static final String CONNECTION_STRING = "jdbc:mysql://localhost:3306/library";
+    private static final String CONNECTION_STRING = "jdbc:mysql://localhost:3306/tasksdb";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "hFW5yLylRpx!=2)";
 
@@ -184,5 +184,20 @@ class DbConnect2 {
         } catch(SQLException e){
             throw new RuntimeException(e);
         }
+    }
+
+    public static void main(String[] args) {
+        Book book1 = new Book(1, "The Great Gatsby", "F. Scott Fitzgerald", Status.AVAILABLE);
+        Book book2 = new Book(2, "1984", "George Orwell", Status.ISSUED);
+        Book book3 = new Book(3, "To Kill a Mockingbird", "Harper Lee", Status.RESERVED);
+
+        DbConnect2 dbConnect = new DbConnect2();
+
+        dbConnect.createBook(book1);
+        dbConnect.createBook(book2);
+        dbConnect.createBook(book3);
+
+        System.out.println(dbConnect.getBooksFromDb());
+        dbConnect.updateBookStatus(2, Status.AVAILABLE);
     }
 }

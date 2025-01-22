@@ -144,10 +144,11 @@ class DbConnect1 {
         String query = "UPDATE productinventory SET product_name = ? WHERE id = ?";
 
         try(PreparedStatement pstmt = connection.prepareStatement(query)){
+
             pstmt.setString(1, name);
             pstmt.setInt(2, id);
-
             pstmt.executeUpdate();
+
         } catch(SQLException e){
             throw new RuntimeException(e);
         }
@@ -157,10 +158,44 @@ class DbConnect1 {
         String query = "UPDATE productinventory SET product_category = ? WHERE id = ?";
 
         try(PreparedStatement pstmt = connection.prepareStatement(query)) {
+
             pstmt.setString(1, category.name());
             pstmt.setInt(2, id);
+            pstmt.executeUpdate();
+
         } catch(SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void createProduct(Product product){
+        String query = "INSERT INTO productinventory (id, product_name, product_price, product_category)" +
+                "VALUES (?, ?, ?, ?)";
+        try(PreparedStatement pstmt = connection.prepareStatement(query)){
+
+            pstmt.setInt(1, product.getProductId());
+            pstmt.setString(2, product.getProductName());
+            pstmt.setDouble(3, product.getProductPrice());
+            pstmt.setString(4, product.getProductCategory().name());
+            pstmt.executeUpdate();
+
+        } catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void main(String[] args){
+        Product product1 = new Product(1, "Laptop", 999.99, Category.ELECTRONICS);
+        Product product2 = new Product(2, "Apples", 2.99, Category.ELECTRONICS);
+        Product product3 = new Product(3, "T-shirt", 15.99, Category.CLOTHING);
+
+        DbConnect1 dbConnect = new DbConnect1();
+
+        dbConnect.createProduct(product1);
+        dbConnect.createProduct(product2);
+        dbConnect.createProduct(product3);
+
+        System.out.println(dbConnect.getProductsFromDb());
+        dbConnect.updateProductCategory(2, Category.GROCERY);
     }
 }
