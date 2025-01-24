@@ -1,0 +1,8 @@
+world:
+EN : world
+FR : monde
+ES : mundo
+hello:
+EN : hello
+FR : bonjour
+ES : hola
